@@ -1,8 +1,18 @@
-geneTest <- function(Gene, N, vData, maf=0.05, cadd=NULL, plot=FALSE, floor=1e-4, cc=TRUE) {
+geneTest <- function(Gene, N, vData, maf=0.05, cadd=NULL, reqExAC=FALSE, plot=FALSE, floor=1e-4, cc=TRUE, variants=FALSE) {
   # Apply filters
   CADD <- dplyr::coalesce(vData$CADD, 0)
-  if (is.null(cadd)) cadd <- 0
-  ind <- which(vData$Gene==Gene & vData$ExAC < maf & CADD >= cadd)
+  if (is.null(cadd)) {
+    passCADD <- rep(TRUE, nrow(vData))
+  } else {
+    passCADD <- CADD >= cadd
+  }
+  passMAF <- vData$ExAC < maf
+  if (reqExAC) {
+    passExAC <- vData$ExAC > 0
+  } else {
+    passExAC <- rep(TRUE, nrow(vData))
+  }
+  ind <- which(vData$Gene==Gene & passCADD & passMAF & passExAC)
   if (length(ind) == 0) return(NA)
   MAF <- pmax(floor, vData$ExAC[ind])
   CADD <- CADD[ind]
@@ -27,7 +37,11 @@ geneTest <- function(Gene, N, vData, maf=0.05, cadd=NULL, plot=FALSE, floor=1e-4
   #pnorm((x-sum(Exp))/sqrt(sum(Var)), lower.tail=FALSE)
 
   # Return
-  val <- c(x, sum(Exp), 1-ppois(x-0.5, sum(Exp)))
-  names(val) <- c("Obs", "Exp", "p")
+  if (variants) {
+    val <- data.frame(Obs=NN[,3], Exp, p=1-ppois(NN[,3]-0.5, Exp))
+  } else {
+    val <- c(x, sum(Exp), 1-ppois(x-0.5, sum(Exp)))
+    names(val) <- c("Obs", "Exp", "p")
+  }
   val
 }
