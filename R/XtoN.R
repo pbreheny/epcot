@@ -7,7 +7,7 @@ XtoN <- function(X, fam) {
   pID <- fam[Pairs, "V3"]
 
   ## Convert to 0/1/2 counts
-  N <- matrix(NA, nrow(X), 3, dimnames=list(rownames(X), 0:2))
+  N <- matrix(NA, nrow(X), 3, dimnames=list(rownames(X), paste0("N", 0:2)))
   pb <- txtProgressBar(1, nrow(X), style=3)
   for (i in 1:nrow(X)) {
     famCounts <- tapply(X[i,pID]!=0, subset(fam, V3 %in% pID)$V1, sum)
