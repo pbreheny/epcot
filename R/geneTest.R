@@ -1,4 +1,4 @@
-geneTest <- function(Gene, N, vData, maf=0.05, cadd=NULL, reqExAC=TRUE, plot=FALSE, floor=ifelse(reqExAC, 1e-4, 0), variants=FALSE) {
+geneTest <- function(Gene, N, vData, maf=0.02, cadd=NULL, reqExAC=TRUE, plot=FALSE, floor=ifelse(reqExAC, 0, 1e-4), variants=FALSE) {
   # Apply filters
   CADD <- dplyr::coalesce(vData$CADD, 0)
   if (is.null(cadd)) {
