@@ -2,11 +2,11 @@ geneSummary <- function(Gene, N.pair, N.trio, vData) {
   if (missing(vData)) vData <- get("vData", .GlobalEnv)
   ind <- which(vData$Gene==Gene)
   if (length(ind) == 0) return(NA)
-  NP <- N.pair[ind,]
+  NP <- N.pair[ind,,drop=FALSE]
   colnames(NP) <- gsub("N", "P", colnames(NP))
   out <- cbind(vData[ind,], RVIS=rvis(Gene), NP)
   if (!missing(N.trio)) {
-    NT <- N.trio[ind,]
+    NT <- N.trio[ind,,drop=FALSE]
     colnames(NT) <- gsub("N", "T", colnames(NT))
     out <- cbind(out, NT)
   }
