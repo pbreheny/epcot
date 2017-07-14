@@ -10,7 +10,7 @@ geneSummary <- function(Gene, N.pair, N.trio, vData) {
     colnames(NT) <- gsub("N", "T", colnames(NT))
     out <- cbind(out, NT)
   }
-  res <- geneTest(Gene, N.pair, N.trio, vData=vData, variants=TRUE, reqExAC=FALSE, maf=1)
+  res <- geneTest(Gene, N.pair, N.trio, vData=vData, variants=TRUE, reqExAC=FALSE, maf=Inf)
   out <- as.data.frame(cbind(out, res))
   out[,-which(names(out)=="Type")]
 }
