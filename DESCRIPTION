@@ -7,3 +7,4 @@ Maintainer: Patrick Breheny <patrick-breheny@uiowa.edu>
 Description: Analysis package accompanying premature birth Danish sister pairs whole exome sequencing project (PI: Ryckman).
 License: GPL-3
 LazyData: TRUE
+RoxygenNote: 6.0.1.9000

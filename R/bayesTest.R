@@ -4,6 +4,10 @@
 #' @param N.trio   Matrix of 0/1/2/3 counts for sister trios
 #' @param vData    data.table of variant info (ExAC frequencies and CADD scores)
 #' @param cutoff   Exclude variants with ExAC frequencies above this cutoff
+#' @param ceiling  Ceiling for prior
+#' @param floor    Floor for prior
+#' @param rate     Decay rate for prior
+#' @param Q        Number of null simulations to run for q value calculation
 #'
 #' @examples bayesTest(N.pair, N.trio, vData)
 
@@ -45,8 +49,8 @@ bayesTest <- function(N.pair, N.trio, vData, cutoff=0.2, ceiling=2000, floor=0.0
     NN <- matrix(rpois(nv*Q, Exp), nv, Q)
     PP <- matrix(1-pgamma(1, NN + tau, Exp + tau), nv, Q)
     null <- ecdf(PP)
-    q <- pmin(nv*(1-null(Prob))/rank(1-Prob), 1)
-    return(data.frame(Obs, Exp, Prob, q))
+    FDR <- pmin(nv*(1-null(Prob))/rank(1-Prob), 1)
+    return(data.frame(Obs, Exp, Prob, FDR))
   } else {
     return(data.frame(Obs, Exp, Prob))
   }
