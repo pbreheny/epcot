@@ -1,7 +1,7 @@
 # epcot: Exome-sequencing Paired Case-Only Tests
 
-To install (requires `devtools`):
+To install (requires the `remotes` package):
 
 ```r
-install_github("pbreheny/epcot")
+remotes::install_github("pbreheny/epcot")
 ```
