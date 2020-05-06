@@ -1,10 +1,14 @@
 Package: epcot
 Title: Exome-sequencing Paired Case-Only Tests
-Version: 0.3-0
-Date: 2018-07-13
+Version: 0.4.0
+Date: 2020-05-06
 Author: Patrick Breheny
 Maintainer: Patrick Breheny <patrick-breheny@uiowa.edu>
 Description: Analysis package accompanying premature birth Danish sister pairs whole exome sequencing project (PI: Ryckman).
+Depends: R (>= 3.5.0)
+Imports: data.table
+Suggests: tinytest
 License: GPL-3
 LazyData: TRUE
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 7.1.0
+Encoding: UTF-8

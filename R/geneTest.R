@@ -1,3 +1,5 @@
+#' @export
+
 geneTest <- function(Gene, N.pair, N.trio, vData, maf=.02, cadd=NULL, reqExAC=TRUE, plot=FALSE, floor=ifelse(reqExAC, 0, 1e-4), variants=FALSE) {
   if (missing(vData)) vData <- get("vData", .GlobalEnv)
   # Apply filters

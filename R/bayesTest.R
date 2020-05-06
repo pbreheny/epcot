@@ -9,7 +9,14 @@
 #' @param rate     Decay rate for prior
 #' @param Q        Number of null simulations to run for q value calculation
 #'
-#' @examples bayesTest(N.pair, N.trio, vData)
+#' @examples
+#' N2 <- epcot_example$N2
+#' N3 <- epcot_example$N3
+#' vData <- epcot_example$vData
+#' res <- bayesTest(N2, N3, vData)
+#' head(res[order(res$FDR),])
+#'
+#' @export
 
 bayesTest <- function(N.pair, N.trio, vData, cutoff=0.2, ceiling=2000, floor=0.01, rate=0.5, Q=100) {
 

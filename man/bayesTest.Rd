@@ -4,8 +4,16 @@
 \alias{bayesTest}
 \title{Bayes test of excess variant frequency with CADD-based prior}
 \usage{
-bayesTest(N.pair, N.trio, vData, cutoff = 0.2, ceiling = 2000,
-  floor = 0.01, rate = 0.5, Q = 100)
+bayesTest(
+  N.pair,
+  N.trio,
+  vData,
+  cutoff = 0.2,
+  ceiling = 2000,
+  floor = 0.01,
+  rate = 0.5,
+  Q = 100
+)
 }
 \arguments{
 \item{N.pair}{Matrix of 0/1/2 counts for sister pairs}
@@ -28,5 +36,10 @@ bayesTest(N.pair, N.trio, vData, cutoff = 0.2, ceiling = 2000,
 Bayes test of excess variant frequency with CADD-based prior
 }
 \examples{
-bayesTest(N.pair, N.trio, vData)
+N2 <- epcot_example$N2
+N3 <- epcot_example$N3
+vData <- epcot_example$vData
+res <- bayesTest(N2, N3, vData)
+head(res[order(res$FDR),])
+
 }

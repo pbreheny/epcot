@@ -1,3 +1,4 @@
+#' @export
 geneSummary <- function(Gene, N.pair, N.trio, vData) {
   if (missing(vData)) vData <- get("vData", .GlobalEnv)
   ind <- which(vData$Gene==Gene)
