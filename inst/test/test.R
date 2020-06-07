@@ -1,4 +1,3 @@
-library(epcot)
 N2 <- epcot_example$N2
 N3 <- epcot_example$N3
 vData <- epcot_example$vData
